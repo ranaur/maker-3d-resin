@@ -11,15 +11,17 @@ weight_value  = 1;
 // Override the numeral text (leave empty to use weight_value)
 weight_text_override = "";
 // Unit printed right under the numeral
-weight_unit   = "OZ";
+weight_unit   = "";
 // Small caption under the unit
 weight_caption = "TROY OUNCE";
 
 /* [Legends] */
 bank_name     = "BANK OF BRIMSTONE";
-fineness_text = ".999 FINE GOLD";
-year_text     = "2026";
-motto_text    = "IN FIRE WE TRUST";
+fineness_text = "99.99 FINE GOLD";
+year_text     = "1883";
+motto_text    = "EX SULPHURE FACTUM";
+//motto_text    = upper("Facilis descensus Averno");
+//motto_text    = "LAPIS NIGER ET AVRVM";
 
 /* [Coin geometry (mm)] */
 diameter    = 32.7;
@@ -31,9 +33,9 @@ rim_height  = 0.4;
 // Height of raised lettering/emblem (usually <= rim_height)
 relief      = 0.4;
 // Raised or engraved (sunken) design
-relief_style = "raised"; // [raised, engraved]
+relief_style = "engraved"; // [raised, engraved]    
 // medal = reverse upright when flipped about the vertical axis; coin = about the horizontal axis
-alignment = "medal"; // [medal, coin]
+alignment = "coin"; // [medal, coin]
 // Number of beads on the inner border (0 = none)
 beads       = 72;
 bead_d      = 0.7;
@@ -208,8 +210,8 @@ module coin() {
     } else {
         difference() {
             blank();
-            translate([0, 0, field_z - relief]) obverse_relief();
-            translate([0, 0, rim_height + relief]) flip() reverse_relief();
+            translate([0, 0, 0.01 + field_z - relief]) obverse_relief();
+            translate([0, 0, -0.01 + rim_height + relief]) flip() reverse_relief();
         }
     }
 }
